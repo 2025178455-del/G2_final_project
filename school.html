@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnipSnap D.I.Y. | Gift Projects</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Font Setting: Times New Roman */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Bubble Font for Headers */
+        .font-bubble {
+            font-family: 'Verdana', sans-serif;
+            font-weight: 900;
+            letter-spacing: 1px;
+            -webkit-text-stroke: 1.5px #0b1a37;
+            text-shadow: 2px 2px 0px #0b1a37;
+            color: white;
+        }
+
+        /* Background */
+        .textured-bg {
+            background-color: #0b1a37; 
+            background-image: url('wallpaper.jpg');
+            min-height: 100vh;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            color: white; 
+            transition: all 5s ease-in-out;
+            padding: 8px 20px; 
+            border-radius: 9999px;
+            text-decoration: none;
+        }
+
+        .nav-active {
+            background-color: #c9d1f8;
+            color: #0b1a37 !important;
+            font-weight: 600;
+            padding: 8px 20px; 
+            border-radius: 9999px; 
+        }
+
+        /* Sub-Nav Link Style */
+        .nav-link-sub {
+            transition: all 5s ease-in-out;
+        }
+
+        /* Instruction Card */
+        .instruction-card {
+            background-color: #0b1a37; 
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .outer-frame {
+            background-color: #c9d1f8; 
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Dashed Line Connector */
+        .connector-line {
+            border-top: 6px dashed #c9d1f8;
+            height: 6px;
+            width: 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body class="textured-bg flex flex-col min-h-screen">
+
+    <header class="container mx-auto px-4 pt-6 relative z-50">
+        <nav class="flex items-center justify-between p-3 bg-gray-900/60 backdrop-blur-md rounded-full border border-gray-600/50 shadow-xl">
+
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" class="h-10 w-10 rounded-full object-cover" alt="SnipSnap Logo">
+                <span class="text-xl font-bold tracking-wider text-white">
+                    SnipSnap <span class="text-sm font-light block -mt-1">D.I.Y.</span>
+                </span>
+            </div>
+
+            <div id="nav-links-container" class="hidden lg:flex items-center space-x-3 text-lg font-medium">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="aboutus.html" class="nav-link">About Us</a>
+                
+                <div class="relative group">
+                    <a href="#" class="nav-link nav-active flex items-center">
+                        Projects <i data-lucide="chevron-down" class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 rounded-xl shadow-lg bg-[#1c325c] ring-1 ring-white/20 hidden group-hover:block z-20 overflow-hidden">
+                        <a href="phome.html" class="block px-4 py-2 text-white hover:bg-[#28406b] transition-colors nav-link-sub text-center">Home</a>
+                        <a href="pschool.html" class="block px-4 py-2 text-white hover:bg-[#28406b] transition-colors nav-link-sub text-center">School</a>
+                        <a href="gift.html" class="block px-4 py-2 text-white hover:bg-[#28406b] transition-colors nav-link-sub text-center">Gift</a>
+                    </div>
+                </div>
+
+                <a href="quiz.html" class="nav-link">Quiz</a>
+                <a href="share.html" class="nav-link">Community Post</a>
+                <a href="contactus.html" class="nav-link">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button class="p-2 rounded-full hover:bg-white/10">
+                    <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                </button>
+                <button class="lg:hidden p-2 rounded-full hover:bg-white/10">
+                    <i data-lucide="menu" class="w-6 h-6 text-white"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+   <main class="container mx-auto px-6 py-8 flex-grow flex flex-col items-center">
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center drop-shadow-md uppercase tracking-wider" style="font-family: 'Verdana', sans-serif;">
+            Multi Compartment Shelf
+        </h1>
+
+        <div class="flex flex-col md:flex-row items-center md:items-center justify-center w-full max-w-6xl gap-4">
+
+            <div class="flex flex-col items-center w-full md:w-1/3">
+                <h2 class="text-4xl font-bubble mb-2 z-10">Video</h2>
+                
+                <div class="outer-frame w-full h-fit flex items-center justify-center bg-blue-200">
+                    <div class="bg-black p-2 rounded-[20px] shadow-2xl w-full max-w-xs transform rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
+                        <video 
+                            src="school.MP4" 
+                            class="w-full h-[400px] object-cover rounded-[15px]" 
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline>
+                        </video>
+
+                        <div class="flex justify-between items-center px-2 py-2 text-gray-400 text-xs">
+                            <span>▶ 1:02</span>
+                            <div class="w-20 h-1 bg-gray-600 rounded-full overflow-hidden">
+                                <div class="w-1/3 h-full bg-white"></div>
+                            </div>
+                            <span>3:50 🔊</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center justify-center px-2">
+                <div class="connector-line"></div>
+            </div>
+
+            <div class="flex flex-col items-center w-full md:w-3/5">
+                <h2 class="text-4xl font-bubble mb-2 z-10">Instructions</h2>
+                
+                <div class="outer-frame w-full h-full">
+                    <div class="instruction-card p-8 h-full flex flex-col justify-center">
+                        
+                        <ol class="list-decimal space-y-4 pl-6 text-lg md:text-xl leading-relaxed font-serif">
+                            <li>Separate the phone box into the inner tray (for Drawer A) and the outer lid (for Drawers B1 and B2).</li>
+                            <li>For Drawer A, cut a centered half-circle handle on one long side of the inner tray.</li>
+                            <li>For Drawers B1 and B2, cut centered half-circle handles on both short sides of the outer lid.</li>
+                            <li>Cut the outer lid in half along the long side to create Drawer B1 and B2.</li>
+                            <li>Glue the two pieces side by side with the half-circle openings facing the front.</li>
+                            <li>Close the back of all drawers by gluing cardboard pieces to cover the open sides.</li>
+                            <li>Wrap Drawer A, B1, and B2 with gift wrap or decorative paper.</li>
+                            <li>Cut 8 cardboard pieces for the shelf: back panel, base, left side, right side, top panel, top drawer divider, middle drawer divider, and inner vertical divider.</li>
+                            <li>Glue all the shelf pieces together to assemble the full structure.</li>
+                        </ol>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="mt-12 w-full bg-gray-900/60 backdrop-blur-md border-t border-gray-700/50 text-white text-sm">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-6">
+                <span>&copy; SnipSnap 2025</span>
+                <span class="hidden md:inline-block">|</span>
+                <a href="mailto:snipsnap@gmail.com" class="hover:text-blue-300">snipsnap@gmail.com</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <i data-lucide="map-pin" class="w-5 h-5 text-gray-400"></i>
+                <i data-lucide="phone" class="w-5 h-5 text-gray-400"></i>
+                <i data-lucide="instagram" class="w-5 h-5 text-gray-400"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

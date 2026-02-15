@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnipSnap D.I.Y. | Quiz</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Global Font */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Background */
+        .textured-bg {
+            background-color: #0b1a37; 
+            background-image: url('wallpaper.jpg');
+            min-height: 100vh;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            color: white; 
+            transition: all 0.2s ease-in-out;
+            padding: 8px 20px; 
+            border-radius: 9999px;
+            text-decoration: none;
+        }
+
+        .nav-active {
+            background-color: #c9d1f8;
+            color: #0b1a37 !important;
+            font-weight: 600;
+            padding: 8px 20px; 
+            border-radius: 9999px; 
+        }
+
+        .nav-link-sub { transition: all 0.2s ease-in-out; }
+
+        /* --- QUIZ SPECIFIC STYLES --- */
+        
+        .quiz-card {
+            background-color: #0b1a37;
+            border: 2px solid #3b4b7a;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        }
+
+        .quiz-header {
+            background-color: #5a7bba;
+            color: white;
+            font-family: 'Verdana', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem;
+            border-bottom: 4px solid #0b1a37;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .quiz-btn {
+            background-color: #c9d1f8;
+            color: #0b1a37;
+            font-weight: bold;
+            padding: 1rem;
+            border-radius: 9999px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.1s, background-color 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .quiz-btn:hover {
+            transform: scale(1.02);
+            background-color: #e0e7ff;
+        }
+
+        .correct-answer {
+            background-color: #fde047 !important; /* Yellow */
+            color: #000 !important;
+            border: 2px solid #eab308;
+            pointer-events: none;
+        }
+
+        .wrong-answer {
+            background-color: #f87171 !important; /* Red */
+            color: white !important;
+            border: 2px solid #dc2626;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .quiz-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 4px solid white;
+            border-radius: 0.5rem;
+            background-color: white;
+        }
+
+        /* Result Section Styles */
+        .result-box {
+            background-color: rgba(59, 75, 122, 0.95);
+            border: 4px solid #c9d1f8;
+            border-radius: 20px;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 0 20px rgba(201, 209, 248, 0.3);
+        }
+
+        .result-btn {
+            background-color: #fde047;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 12px 40px;
+            border-radius: 9999px;
+            transition: transform 0.2s;
+            border: 2px solid #eab308;
+        }
+        .result-btn:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+
+<body class="textured-bg flex flex-col min-h-screen">
+
+    <header class="container mx-auto px-4 pt-6 relative z-50">
+        <nav class="flex items-center justify-between p-3 bg-gray-900/60 backdrop-blur-md rounded-full border border-gray-600/50 shadow-xl">
+
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" class="h-10 w-10 rounded-full object-cover" alt="Logo">
+                <span class="text-xl font-bold tracking-wider text-white">
+                    SnipSnap <span class="text-sm font-light block -mt-1">D.I.Y.</span>
+                </span>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-3 text-lg font-medium">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="aboutus.html" class="nav-link">About Us</a>
+                
+                <div class="relative group">
+                    <a href="#" class="nav-link flex items-center">
+                        Projects <i data-lucide="chevron-down" class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 rounded-xl shadow-lg bg-[#1c325c] ring-1 ring-white/20 hidden group-hover:block z-20 overflow-hidden">
+                        <a href="phome.html" class="block px-4 py-2 text-white hover:bg-[#28406b] transition-colors nav-link-sub text-center">Home</a>
+                        <a href="school.html" class="block px-4 py-2 text-white hover:bg-[#28406b] transition-colors nav-link-sub text-center">School</a>
+                        <a href="gift.html" class="block px-4 py-2 text-white hover:bg-[#28406b] transition-colors nav-link-sub text-center">Gift</a>
+                    </div>
+                </div>
+
+                <a href="quiz.html" class="nav-link nav-active">Quiz</a>
+                <a href="share.html" class="nav-link">Community Post</a>
+                <a href="contactus.html" class="nav-link">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button class="p-2 rounded-full hover:bg-white/10">
+                    <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 flex-grow">
+
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center drop-shadow-md uppercase tracking-wider" style="font-family: 'Verdana', sans-serif;">
+            Let's Test!
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+            <div class="quiz-card">
+                <div class="quiz-header text-xl">QUESTION 1 : HOME</div>
+                <div class="p-6 flex flex-col items-center space-y-4">
+                    <img src="basket.webp" alt="Rope Basket" class="quiz-image"> 
+                    <p class="text-center text-white text-sm md:text-base leading-snug h-16 flex items-center justify-center">
+                        Which of the following lists shows the materials and tools needed to make a rope storage basket?
+                    </p>
+                    <div class="w-full space-y-3 mt-2">
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn">a. Laundry bottle, cotton rope, hot glue gun, unused box, ribbon, beads, scissors</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">b. Laundry bottle, tape, cotton rope, paper, hot glue gun, cutter</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">c. Bucket, rope, hot glue gun, unused box, scissors, ribbon, beads</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <div class="quiz-header text-xl">QUESTION 2 : SCHOOL</div>
+                <div class="p-6 flex flex-col items-center space-y-4">
+                    <img src="paper.jpg" alt="Colored Paper" class="quiz-image"> 
+                    <p class="text-center text-white text-sm md:text-base leading-snug h-16 flex items-center justify-center">
+                        What is the coloured paper used for in making the roped storage basket?
+                    </p>
+                    <div class="w-full space-y-3 mt-2">
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">a. To decorate the inside of the laundry bottle</button>
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn">b. To wrap the bottle and make the base look neat</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">c. To create flowers to stick on the basket</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <div class="quiz-header text-xl">QUESTION 3 : GIFT</div>
+                <div class="p-6 flex flex-col items-center space-y-4">
+                    <img src="sunflower.webp" alt="Sunflower" class="quiz-image"> 
+                    <p class="text-center text-white text-sm md:text-base leading-snug h-16 flex items-center justify-center">
+                        What is the first step when making the DIY paper sunflower?
+                    </p>
+                    <div class="w-full space-y-3 mt-2">
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">a. Gluing the petals together</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">b. Decorating the center of the flower</button>
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn">c. Cutting the toilet paper roll</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <div class="quiz-header text-xl">QUESTION 4 : HOME</div>
+                <div class="p-6 flex flex-col items-center space-y-4">
+                    <img src="basket2.webp" alt="Sunflower" class="quiz-image"> 
+                    <p class="text-center text-white text-sm md:text-base leading-snug h-16 flex items-center justify-center">
+                        Which two items are combined to create the main layered body of the Rope Storage Basket?
+                    </p>
+                    <div class="w-full space-y-3 mt-2">
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">a. An unused box and a ribbon.</button>
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn">b. A laundry bottle and cotton rope.</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">c. Two hot glue sticks and a bucket.</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <div class="quiz-header text-xl">QUESTION 5 : SCHOOL</div>
+                <div class="p-6 flex flex-col items-center space-y-4">
+                    <img src="stationery.webp" alt="Sunflower" class="quiz-image"> 
+                    <p class="text-center text-white text-sm md:text-base leading-snug h-16 flex items-center justify-center">
+                        What household item is used to construct the primary structure of the drawers for the 'Multi Compartment Shelf' DIY project?
+                    </p>
+                    <div class="w-full space-y-3 mt-2">
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">a. Unused plastic laundry bottles cut into sections.</button>
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn">b. Phone boxes (inner tray and outer lid) separated and reassembled.</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">c. Cardboard (or a box) cut to match the size of the basket body.</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <div class="quiz-header text-xl">QUESTION 6 : GIFT</div>
+                <div class="p-6 flex flex-col items-center space-y-4">
+                    <img src="sun.webp" alt="Sunflower" class="quiz-image"> 
+                    <p class="text-center text-white text-sm md:text-base leading-snug h-16 flex items-center justify-center">
+                        What is the final step of construction (before optional decoration) to complete the 'Mini Sunflower Bouquet'?
+                    </p>
+                    <div class="w-full space-y-3 mt-2">
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn">a. Placing the flowers inside the cone and adjusting them until the bouquet looks neat and full.</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">b. Rolling the cone into a flat tube shape.</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn">c. Taping the petals to the center coil to secure them.</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-xl mx-auto mt-16 text-center">
+            <button id="show-score-btn" onclick="showResult()" class="result-btn shadow-2xl animate-bounce">
+                Finish & See Score
+            </button>
+
+            <div id="result-container" class="hidden result-box">
+                <h2 class="text-3xl font-bold text-white mb-2">Quiz Completed!</h2>
+                <div class="text-xl text-blue-200 mb-6 font-serif italic">Here is your result:</div>
+                
+                <div class="text-6xl font-black text-[#fde047] mb-4 drop-shadow-md">
+                    <span id="final-score">0</span> / 6
+                </div>
+
+                <p id="result-message" class="text-lg text-white font-medium"></p>
+                
+                <button onclick="location.reload()" class="mt-6 px-6 py-2 border border-white rounded-full text-white hover:bg-white hover:text-[#0b1a37] transition-colors">
+                    Try Again
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto w-full bg-gray-900/60 backdrop-blur-md border-t border-gray-700/50 text-white text-sm">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-6">
+                <span>&copy; SnipSnap 2025</span>
+                <span class="hidden md:inline-block">|</span>
+                <a href="mailto:snipsnap@gmail.com" class="hover:text-blue-300">snipsnap@gmail.com</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <i data-lucide="map-pin" class="w-5 h-5 text-gray-400"></i>
+                <i data-lucide="instagram" class="w-5 h-5 text-gray-400"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // --- NEW QUIZ LOGIC ---
+        
+        let score = 0; // Tracks the user's score
+        let questionsAnswered = 0; // Optional: Tracks how many answered (not strictly enforced but good for logic)
+
+        function checkAnswer(button, isCorrect) {
+            const parentDiv = button.parentElement;
+            const allButtons = parentDiv.querySelectorAll('.quiz-btn');
+            
+            // Increment score if correct
+            if (isCorrect) {
+                button.classList.add('correct-answer');
+                score++; 
+            } else {
+                button.classList.add('wrong-answer');
+            }
+
+            // Disable buttons for this question
+            allButtons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+            });
+            
+            questionsAnswered++;
+        }
+
+        // Function to display the result
+        function showResult() {
+            const btn = document.getElementById('show-score-btn');
+            const resultBox = document.getElementById('result-container');
+            const scoreDisplay = document.getElementById('final-score');
+            const messageDisplay = document.getElementById('result-message');
+
+            // Hide the button and show the result box
+            btn.classList.add('hidden');
+            resultBox.classList.remove('hidden');
+
+            // Update the score text
+            scoreDisplay.textContent = score;
+
+            // Custom Message based on score
+            if (score === 6) {
+                messageDisplay.textContent = "🏆 Perfect! You are a DIY Master!";
+            } else if (score >= 4) {
+                messageDisplay.textContent = "🎉 Great job! You know your stuff!";
+            } else if (score >= 2) {
+                messageDisplay.textContent = "😊 Not bad! Check out our projects to learn more.";
+            } else {
+                messageDisplay.textContent = "😅 Nice try! Read the instructions and try again.";
+            }
+
+            // Smooth scroll to the result
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
